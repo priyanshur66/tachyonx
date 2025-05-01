@@ -17,7 +17,7 @@ export default function ManufacturerApplicationPage() {
   const [applicationData, setApplicationData] = useState<Partial<ManufacturerApplicationFormValues>>({
     companyInfo: {
       name: '',
-      stellarPubkey: '',
+      solanaPubkey: '',
       contact: '',
       website: '',
     },

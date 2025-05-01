@@ -8,7 +8,7 @@ export type ApplicationStatus =
 
 export interface CompanyInfo {
   name: string;
-  stellarPubkey: string;
+  solanaPubkey: string;
   contact: string;
   website: string;
 }

@@ -1,7 +1,7 @@
 [
     {
-      "contractId": "std",
-      "networkPassphrase": "Test SDF Network ; September 2015",
-      "contractAddress": "CAUA5OCRFU7FGPTBBCO6QK2WZ7HHWSDFTUPQ5HOXZXRBEV2VDDOPJJOC"
+      "contractId": "tachyonx",
+      "network": "devnet",
+      "contractAddress": "3XysZ1dJMVpertGD8EWnkqj2q5pJEUDcqKAQkwx1i7nB"
     }
   ] 

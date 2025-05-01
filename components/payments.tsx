@@ -1,43 +1,13 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import * as StellarSdk from "@stellar/stellar-sdk";
-import { rpc as StellarRpc } from "@stellar/stellar-sdk";
-import {
-  isConnected,
-  setAllowed,
-  getPublicKey,
-  signTransaction,
-} from "@stellar/freighter-api";
+import { useConnection, useWallet } from '@solana/wallet-adapter-react';
+import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
+import { PublicKey, Transaction, SystemProgram } from '@solana/web3.js';
 
 export default function Home() {
-  const [publicKey, setPublicKey] = useState<string | null>(null);
-
-  useEffect(() => {
-    const checkFreighter = async () => {
-      try {
-        const connected = await isConnected();
-        if (connected) {
-          const pubKey = await getPublicKey();
-          setPublicKey(pubKey);
-        }
-      } catch (error) {
-        console.error("Error checking Freighter connection:", error);
-      }
-    };
-
-    checkFreighter();
-  }, []);
-
-  const handleConnectWallet = async () => {
-    try {
-      await setAllowed();
-      const pubKey = await getPublicKey();
-      setPublicKey(pubKey);
-    } catch (error) {
-      console.error("Error connecting to Freighter:", error);
-    }
-  };
+  const { publicKey, sendTransaction } = useWallet();
+  const { connection } = useConnection();
 
   const handleSendPayment = async (destination: string, amount: string) => {
     if (!publicKey) {
@@ -46,36 +16,21 @@ export default function Home() {
     }
 
     try {
-      const server = new StellarRpc.Server(
-        "https://soroban-testnet.stellar.org",
-      );
-      const sourceAccount = await server.getAccount(publicKey);
-      const transaction = new StellarSdk.TransactionBuilder(sourceAccount, {
-        fee: StellarSdk.BASE_FEE,
-        networkPassphrase: StellarSdk.Networks.TESTNET,
-      })
-        .addOperation(
-          StellarSdk.Operation.payment({
-            destination: destination,
-            asset: StellarSdk.Asset.native(),
-            amount: amount,
-          }),
-        )
-        .setTimeout(30)
-        .build();
+      const destinationPubkey = new PublicKey(destination);
+      const lamports = parseFloat(amount) * 1000000000; // Convert SOL to lamports
 
-      const signedTransaction = await signTransaction(transaction.toXDR(), {
-        networkPassphrase: StellarSdk.Networks.TESTNET,
-      });
-
-      const transactionResult = await server.sendTransaction(
-        StellarSdk.TransactionBuilder.fromXDR(
-          signedTransaction,
-          StellarSdk.Networks.TESTNET,
-        ),
+      const transaction = new Transaction().add(
+        SystemProgram.transfer({
+          fromPubkey: publicKey,
+          toPubkey: destinationPubkey,
+          lamports,
+        })
       );
 
-      console.log("Transaction successful:", transactionResult);
+      const signature = await sendTransaction(transaction, connection);
+      await connection.confirmTransaction(signature, 'confirmed');
+
+      console.log("Transaction successful:", signature);
       alert("Payment sent successfully!");
     } catch (error) {
       console.error("Error sending payment:", error);
@@ -86,18 +41,46 @@ export default function Home() {
   return (
     <div className="max-w-md mx-auto">
       <h2 className="text-2xl font-bold mb-4">Send Payment</h2>
-      {publicKey ? (
-        <>
-          <p className="mb-4">Connected: {publicKey}</p>
-        </>
-      ) : (
-        <button
-          onClick={handleConnectWallet}
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        >
-          Connect Freighter Wallet
-        </button>
+      <div className="mb-4">
+        <WalletMultiButton />
+      </div>
+      
+      {publicKey && (
+        <div className="mt-4">
+          <p className="mb-4">Connected: {publicKey.toString()}</p>
+          <div className="space-y-2">
+            <div>
+              <label className="block text-sm font-medium">Destination</label>
+              <input 
+                type="text" 
+                id="destination" 
+                className="mt-1 w-full p-2 border rounded" 
+                placeholder="Recipient's Solana address" 
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium">Amount (SOL)</label>
+              <input 
+                type="text" 
+                id="amount" 
+                className="mt-1 w-full p-2 border rounded" 
+                placeholder="0.01" 
+              />
+            </div>
+            <button 
+              onClick={() => {
+                const destination = (document.getElementById('destination') as HTMLInputElement).value;
+                const amount = (document.getElementById('amount') as HTMLInputElement).value;
+                handleSendPayment(destination, amount);
+              }}
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full"
+            >
+              Send
+            </button>
+          </div>
+        </div>
       )}
     </div>
+  );
   );
 }

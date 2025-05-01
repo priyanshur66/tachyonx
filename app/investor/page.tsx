@@ -114,7 +114,7 @@ export default function InvestorHomePage() {
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900">Investor Dashboard</h1>
           <p className="mt-2 text-gray-500">
-            Welcome to the STD Protocol investor portal
+            Welcome to the TachyonX investor portal
           </p>
         </div>
         

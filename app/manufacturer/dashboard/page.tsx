@@ -110,9 +110,9 @@ function ManufacturerDashboardPage() {
     
     // Company info
     if (app.companyInfo) {
-      totalFields += 4; // name, stellarPubkey, contact, website
+      totalFields += 4; // name, solanaPubkey, contact, website
       if (app.companyInfo.name) completedFields += 1;
-      if (app.companyInfo.stellarPubkey) completedFields += 1;
+      if (app.companyInfo.solanaPubkey) completedFields += 1;
       if (app.companyInfo.contact) completedFields += 1;
       if (app.companyInfo.website) completedFields += 1;
     }
@@ -453,7 +453,7 @@ function ManufacturerDashboardPage() {
                     </div>
                     <div>
                       <p className="text-xs text-gray-500">Stellar Public Key</p>
-                      <p className="text-sm font-mono text-xs truncate font-medium">{application.companyInfo.stellarPubkey}</p>
+                      <p className="text-sm font-mono text-xs truncate font-medium">{application.companyInfo.solanaPubkey}</p>
                     </div>
                     <div>
                       <p className="text-xs text-gray-500">Contact</p>

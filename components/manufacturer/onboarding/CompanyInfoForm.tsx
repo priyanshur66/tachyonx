@@ -22,7 +22,7 @@ export default function CompanyInfoForm({ defaultValues, onSubmit }: CompanyInfo
     resolver: zodResolver(companyInfoSchema),
     defaultValues: defaultValues || {
       name: '',
-      stellarPubkey: '',
+      solanaPubkey: '',
       contact: '',
       website: '',
     },
@@ -60,7 +60,7 @@ export default function CompanyInfoForm({ defaultValues, onSubmit }: CompanyInfo
               
               <FormField
                 control={form.control}
-                name="stellarPubkey"
+                name="solanaPubkey"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Stellar Public Key</FormLabel>

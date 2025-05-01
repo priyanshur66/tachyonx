@@ -1,8 +1,8 @@
-# STD Protocol Implementation Blueprint
+# TachyonX Implementation Blueprint
 
 ## Project Overview
 
-This document outlines a detailed plan for implementing the Securely Tradable Debts (STD) MVP platform based on the provided specification. The platform enables tokenizing high-margin manufacturing debt, allowing crypto investors to fund manufacturers and earn real-world yields.
+This document outlines a detailed plan for implementing the TachyonX MVP platform based on the provided specification. The platform enables tokenizing high-margin manufacturing debt, allowing crypto investors to fund manufacturers and earn real-world yields.
 
 ## Key Components
 

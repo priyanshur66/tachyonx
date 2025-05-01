@@ -23,7 +23,7 @@ export default function DashboardPage() {
       <div className="flex flex-col gap-2">
         <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
         <p className="text-muted-foreground">
-          Welcome to the STD Protocol platform. Manage your investments and track performance.
+          Welcome to the TachyonX platform. Manage your investments and track performance.
         </p>
       </div>
 

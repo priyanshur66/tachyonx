@@ -200,7 +200,7 @@ export const initMockData = () => {
     id: 'app-0',
     companyInfo: {
       name: 'TechManufacture Inc.',
-      stellarPubkey: 'GBLTXIBT7QYF2JW7OZAYDWYTVJ2FGDLB63AND5GG4YKAYHP3KZ5JGZWA',
+      solanaPubkey: 'GBLTXiBt7QYf2JW7ozAYdWyTVj2FgdLB63aNd5gg4YkAyHp3Kz5JgzWA',
       contact: 'contact@techmanufacture.com',
       website: 'https://techmanufacture.com'
     },

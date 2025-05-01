@@ -19,7 +19,7 @@ const SorobanProvider = ({ children }: Props) => {
   return (
     <SorobanReactProvider
       chains={chains}
-      appName={"STD Protocol Interface"}
+      appName={"TachyonX Interface"}
       activeChain={testnet}
       connectors={connectors}
       deployments={deployments}

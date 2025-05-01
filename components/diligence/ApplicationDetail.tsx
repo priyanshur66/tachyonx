@@ -481,7 +481,7 @@ export function ApplicationDetail({
                             Stellar Public Key
                           </div>
                           <div className="font-mono text-sm truncate">
-                            {application.companyInfo.stellarPubkey}
+                            {application.companyInfo.solanaPubkey}
                           </div>
                         </div>
                         <div>

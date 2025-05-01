@@ -1,4 +1,4 @@
-# Securely Tradable Debts (STD) MVP Specification
+# TachyonX MVP Specification
 
 ## Overview
 A platform for tokenizing high-margin manufacturing debt, enabling crypto investors to fund manufacturers and earn real-world yields. MVP focuses on onboarding, diligence, DAO voting, and a mock marketplace.

@@ -5,11 +5,11 @@ import Footer from "@/components/Footer";
 import { cn } from "@/lib/utils";
 import { ClientInit } from "@/components/ClientInit";
 import { Toaster } from "@/components/ui/toaster";
-import SorobanProvider from "@/components/sorobon-provider";
+import SolanaProvider from "@/components/solana-provider";
 
 export const metadata: Metadata = {
-  title: "STD Protocol Interface",
-  description: "Interface for the STD Protocol platform",
+  title: "TachyonX Interface",
+  description: "Interface for the TachyonX platform",
 };
 
 export default function RootLayout({
@@ -24,13 +24,13 @@ export default function RootLayout({
           "min-h-screen flex flex-col bg-background text-foreground" /* Add any body specific classes here */
         )}
       >
-        <SorobanProvider>
+        <SolanaProvider>
           <ClientInit />
           <Header />
           <main className="flex-grow container mx-auto p-4">{children}</main>
           <Footer />
           <Toaster />
-        </SorobanProvider>
+        </SolanaProvider>
       </body>
     </html>
   );
