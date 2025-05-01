@@ -1,15 +1,9 @@
 "use client";
 
+// THIS FILE IS DEPRECATED - Use solana-provider.tsx instead
+// Keeping this file to avoid breaking existing imports, but it's now just a placeholder
+
 import { ReactNode } from 'react'
-import {SorobanReactProvider} from '@soroban-react/core';
-import {testnet} from '@soroban-react/chains';
-import {freighter} from '@soroban-react/freighter';
-import type {ChainMetadata, Connector} from "@soroban-react/types";
-
-import deployments from "../contract-deployments.json";
-
-const chains: ChainMetadata[] = [testnet];
-const connectors: Connector[] = [freighter()];
 
 interface Props {
   children: ReactNode
@@ -17,15 +11,9 @@ interface Props {
 
 const SorobanProvider = ({ children }: Props) => {
   return (
-    <SorobanReactProvider
-      chains={chains}
-      appName={"TachyonX Interface"}
-      activeChain={testnet}
-      connectors={connectors}
-      deployments={deployments}
-    >
+    <>
       {children}
-    </SorobanReactProvider>
+    </>
   );
 }
 

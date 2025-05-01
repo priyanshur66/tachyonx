@@ -1,34 +1,29 @@
 "use client";
 
+// THIS FILE IS DEPRECATED - Use TachyonXContractExample.tsx instead
+// Keeping this file to avoid breaking existing imports, but it's now just a placeholder
+
 import { useState } from "react";
-import { useSorobanReact } from "@soroban-react/core";
-
-// Contract ID from the examples provided
-const STD_CONTRACT_ID = "CAUA5OCRFU7FGPTBBCO6QK2WZ7HHWSDFTUPQ5HOXZXRBEV2VDDOPJJOC";
-
-// Type for SME details
-interface SMEDetails {
-  name: string;
-  reg_num: string;
-  jurisdiction: string;
-  address: string;
-  website: string;
-}
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 
 const STDContractExample = () => {
-  const { address, server } = useSorobanReact();
-  const [loading, setLoading] = useState(false);
-  const [result, setResult] = useState<any>(null);
-  const [error, setError] = useState<string | null>(null);
+  return (
+    <Card className="w-full">
+      <CardHeader>
+        <CardTitle>STD Contract Example (Deprecated)</CardTitle>
+        <CardDescription>
+          This component is deprecated. Please use TachyonXContractExample instead.
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <p>This Stellar/Soroban integration has been migrated to Solana.</p>
+        <p>Please update your imports to use the TachyonXContractExample component.</p>
+      </CardContent>
+    </Card>
+  );
+};
 
-  // For creating a proposal
-  const [anchorAddress, setAnchorAddress] = useState("");
-  const [smeDetails, setSmeDetails] = useState<SMEDetails>({
-    name: "SME Example Ltd.",
-    reg_num: "REG-987",
-    jurisdiction: "Exampleland",
-    address: "456 Oak Ave",
-    website: "http://sme.example",
+export default STDContractExample;
   });
   const [researchUrl, setResearchUrl] = useState("http://papers.co/research123");
   const [initialInvestReq, setInitialInvestReq] = useState(10000000000);
